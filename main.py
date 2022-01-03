@@ -5,4 +5,17 @@ app = FastAPI()
 
 @app.get("/")
 async def home():
-    return "Welcome to the To Do App"
+    data = [
+        {
+            "key": "1",
+            "item": "Learn Next.js",
+            "status": "Done",
+        },
+        {
+            "key": "2",
+            "item": "Learn FastAPI",
+            "status": "Not Done Yet",
+        },
+    ]
+
+    return data

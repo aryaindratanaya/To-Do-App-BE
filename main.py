@@ -40,9 +40,8 @@ async def read_todos():
 
 class Item(BaseModel):
     item: str
-    status: str
 
 
 @app.post("/")
 async def create_todo(item: Item):
-    return item
+    pass

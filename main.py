@@ -19,29 +19,22 @@ app.add_middleware(
 
 # ========== End: SPECIFY AllOWED ORIGIN(S) ==========
 
+# ========== Start: FAKE DATABASE ==========
+todos = []
+# ========== End: FAKE DATABASE ==========
+
 
 @app.get("/")
 async def read_todos():
-    data = [
-        {
-            "key": "1",
-            "item": "Learn Next.js",
-            "status": "Done",
-        },
-        {
-            "key": "2",
-            "item": "Learn FastAPI",
-            "status": "Not Done Yet",
-        },
-    ]
-
-    return data
+    return todos
 
 
-class Item(BaseModel):
+class Todo(BaseModel):
     item: str
 
 
 @app.post("/")
-async def create_todo(item: Item):
-    pass
+async def create_todo(todo: Todo):
+    todo = todo.dict()
+    todo["status"] = False
+    todos.append(todo)
